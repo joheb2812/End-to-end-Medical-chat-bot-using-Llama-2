@@ -1,6 +1,7 @@
 from pinecone import Pinecone, ServerlessSpec
 from src.helper import load_pdf, text_split, download_hugging_face_embeddings
 # from langchain_community.vectorstores import Pinecone
+from pinecone import Pinecone, ServerlessSpec
 from dotenv import load_dotenv
 from langchain_community.vectorstores import Pinecone as PineconeStore
 
@@ -10,12 +11,11 @@ import os
 load_dotenv()  # Load environment variables from .env file
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_API_ENV = os.getenv("PINECONE_API_ENV")
-print(f"PINECONE_API_KEY: {PINECONE_API_KEY}")
-print(f"PINECONE_ENVIRONMENT: {PINECONE_API_ENV}")
+
 
 extracted_data = load_pdf("data/")
 text_chunks = text_split(extracted_data)
-print(f"Number of text chunks: {len(text_chunks)}")
+
 
 embeddings = download_hugging_face_embeddings()
 
